@@ -143,7 +143,6 @@ export default function RainForecastPage() {
       <article className="max-w-md mx-auto pt-8" itemScope itemType="https://schema.org/Article">
         <header className="text-center mb-8">
           <h1 className="text-3xl font-extrabold text-slate-800 mb-2" itemProp="headline">Wanneer stopt het met regenen?</h1>
-          <p className="text-slate-600 text-base" itemProp="description">Actuele regenvoorspelling voor Nederland. Direct antwoord op jouw vraag: wanneer stopt het met regenen?</p>
         </header>
 
         <Card className="p-6 mb-6 bg-white/80 backdrop-blur-sm border-0 shadow-lg" aria-label="Regenvoorspelling kaart">
