@@ -139,34 +139,34 @@ export default function RainForecastPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-slate-100 p-4">
-      <div className="max-w-md mx-auto pt-8">
-        <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-slate-800 mb-2">Wanneer stopt het met regenen?</h1>
-          <p className="text-slate-600 text-sm">Nauwkeurige regenvoorspelling voor Nederland</p>
-        </div>
+    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-slate-100 p-4" itemScope itemType="https://schema.org/WebPage">
+      <article className="max-w-md mx-auto pt-8" itemScope itemType="https://schema.org/Article">
+        <header className="text-center mb-8">
+          <h1 className="text-3xl font-extrabold text-slate-800 mb-2" itemProp="headline">Wanneer stopt het met regenen?</h1>
+          <p className="text-slate-600 text-base" itemProp="description">Actuele regenvoorspelling voor Nederland. Direct antwoord op jouw vraag: wanneer stopt het met regenen?</p>
+        </header>
 
-        <Card className="p-6 mb-6 bg-white/80 backdrop-blur-sm border-0 shadow-lg">
+        <Card className="p-6 mb-6 bg-white/80 backdrop-blur-sm border-0 shadow-lg" aria-label="Regenvoorspelling kaart">
           {loading && (
-            <div className="text-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <section className="text-center py-8" aria-live="polite">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4" aria-label="Laden"></div>
               <p className="text-slate-600">Locatie bepalen en weerdata ophalen...</p>
-            </div>
+            </section>
           )}
 
           {locationError && (
-            <div className="text-center py-6">
-              <MapPin className="h-8 w-8 text-slate-400 mx-auto mb-4" />
+            <section className="text-center py-6" aria-live="polite">
+              <MapPin className="h-8 w-8 text-slate-400 mx-auto mb-4" aria-label="Locatie fout" />
               <p className="text-slate-600 mb-4">{locationError}</p>
               <Button onClick={getCurrentLocation} variant="outline">
                 Probeer opnieuw
               </Button>
-            </div>
+            </section>
           )}
 
           {error && (
-            <div className="text-center py-6">
-              <Cloud className="h-8 w-8 text-slate-400 mx-auto mb-4" />
+            <section className="text-center py-6" aria-live="polite">
+              <Cloud className="h-8 w-8 text-slate-400 mx-auto mb-4" aria-label="Weerdata fout" />
               <p className="text-slate-600 mb-4">{error}</p>
               <Button
                 onClick={() => location && fetchWeatherData(location.latitude, location.longitude)}
@@ -174,23 +174,23 @@ export default function RainForecastPage() {
               >
                 Opnieuw laden
               </Button>
-            </div>
+            </section>
           )}
 
           {rainStatus && (
-            <div className="text-center">
+            <section className="text-center" aria-live="polite">
               <div className="mb-6">
                 {rainStatus.isRaining ? (
-                  <CloudRain className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                  <CloudRain className="h-12 w-12 text-blue-600 mx-auto mb-4" aria-label="Het regent" />
                 ) : (
-                  <Sun className="h-12 w-12 text-yellow-500 mx-auto mb-4" />
+                  <Sun className="h-12 w-12 text-yellow-500 mx-auto mb-4" aria-label="Het is droog" />
                 )}
-                <p className="text-xl font-semibold text-slate-800 mb-2">{rainStatus.message}</p>
+                <p className="text-xl font-semibold text-slate-800 mb-2" itemProp="about">{rainStatus.message}</p>
               </div>
 
               {rainStatus.nextHours && rainStatus.nextHours.length > 0 && (
-                <div className="mt-6">
-                  <h3 className="text-sm font-medium text-slate-700 mb-3">Regenintensiteit komende uren</h3>
+                <section className="mt-6" aria-label="Regenintensiteit komende uren">
+                  <h2 className="text-base font-semibold text-slate-700 mb-3">Regenintensiteit komende uren</h2>
                   <div className="space-y-2">
                     {rainStatus.nextHours.map((hour, index) => (
                       <div key={index} className="flex items-center justify-between text-sm">
@@ -202,6 +202,7 @@ export default function RainForecastPage() {
                             <div
                               className={`h-full ${getIntensityColor(hour.precipitation)} transition-all duration-300`}
                               style={{ width: `${Math.min(100, (hour.precipitation / 5) * 100)}%` }}
+                              aria-label={`Regenintensiteit: ${getIntensityLabel(hour.precipitation)}`}
                             />
                           </div>
                         </div>
@@ -211,17 +212,17 @@ export default function RainForecastPage() {
                       </div>
                     ))}
                   </div>
-                </div>
+                </section>
               )}
-            </div>
+            </section>
           )}
         </Card>
 
-        <div className="text-center text-xs text-slate-500">
-          <p>Data van KNMI HARMONIE-AROME model via Open-Meteo</p>
+        <footer className="text-center text-xs text-slate-500 mt-8" aria-label="Bronvermelding">
+          <p>Data van <a href="https://www.knmi.nl" target="_blank" rel="noopener" className="underline">KNMI HARMONIE-AROME</a> model via <a href="https://open-meteo.com" target="_blank" rel="noopener" className="underline">Open-Meteo</a></p>
           <p className="mt-1">Nauwkeurigheid: ~2km resolutie, uurlijkse updates</p>
-        </div>
-      </div>
-    </div>
+        </footer>
+      </article>
+    </main>
   )
 }
