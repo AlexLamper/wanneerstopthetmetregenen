@@ -3,7 +3,7 @@
 Een website die antwoord geeft op de vraag:
 **“Wanneer stopt het met regenen?”**
 
-De app gebruikt automatisch je locatie en haalt **regenvoorspellingen via de Open-Meteo API** (KNMI HARMONIE-AROME) op voor Nederland. That's it.  
+De app bepaalt automatisch je locatie door middel van de browser-geolocatie en haalt regenvoorspellingen voor Nederland op via de Open-Meteo API (https://open-meteo.com/), met uurdata en voorspellingen tot 3 dagen vooruit. That's it.
 
 ---
 
@@ -12,7 +12,7 @@ De app gebruikt automatisch je locatie en haalt **regenvoorspellingen via de Ope
 - [Next.js (App Router)](https://nextjs.org/)  
 - [TailwindCSS](https://tailwindcss.com/)
 - [ShadCN](https://ui.shadcn.com/) 
-- [Open-Meteo API](https://open-meteo.com/) – KNMI HARMONIE-AROME model
+- [Open-Meteo API](https://open-meteo.com/)
 
 ---
 
